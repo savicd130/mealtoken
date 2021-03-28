@@ -1,0 +1,150 @@
+.menu {
+  grid-column: full-start / full-end;
+  grid-row: 2 / span 2;
+
+  display: grid;
+  grid-template-rows: 30rem 1fr;
+
+  &__header {
+    background-image: linear-gradient(
+        rgba($color-primary, 0.8),
+        rgba($color-primary-2, 0.6)
+      ),
+      url("../../img/menu.jpg");
+    background-size: cover;
+    background-position: top;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+
+    &-title {
+      @include centerPosition;
+
+      h2 {
+        font-size: 9rem;
+      }
+    }
+  }
+
+  &__content {
+    margin: 4rem 15rem;
+    &-box {
+      border: 1px solid $color-primary;
+    }
+  }
+
+  &__links {
+    ul {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border: 1px solid $color-primary;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      overflow: hidden;
+    }
+
+    li {
+      width: 100%;
+    }
+
+    button {
+      color: $color-font;
+      font-size: 1.8rem;
+      height: 5rem;
+      width: 100%;
+      cursor: pointer;
+      text-transform: uppercase;
+      background-color: inherit;
+      border: none;
+      transition: all 0.2s;
+
+      i {
+        margin-right: 1rem;
+      }
+    }
+
+    button:hover {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+  }
+
+  &__cards {
+    border-left: 1px solid $color-primary;
+    border-right: 1px solid $color-primary;
+    padding: 3rem;
+    color: $color-font;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5rem;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &-nav {
+      align-self: flex-start;
+      display: flex;
+
+      a {
+        font-size: 1.5rem;
+        margin-right: 1.5rem;
+      }
+    }
+
+    &-header {
+      position: relative;
+
+      span {
+        position: absolute;
+        top: -8%;
+        right: -5%;
+        background-color: $color-primary;
+        color: $color-white;
+        padding: 1rem;
+        font-size: 2rem;
+        font-weight: 800;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &__pagination {
+    ul {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border: 1px solid $color-primary;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      overflow: hidden;
+    }
+
+    li {
+      width: 100%;
+    }
+
+    button {
+      color: $color-font;
+      font-size: 1.8rem;
+      height: 5rem;
+      width: 100%;
+      cursor: pointer;
+      text-transform: uppercase;
+      background-color: inherit;
+      border: none;
+      transition: all 0.2s;
+
+      i {
+        margin-right: 1rem;
+      }
+    }
+
+    button:hover {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+  }
+}

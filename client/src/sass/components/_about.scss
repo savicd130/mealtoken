@@ -1,0 +1,55 @@
+.about {
+  grid-column: full-start / full-end;
+  grid-row: 2 / span 2;
+
+  display: grid;
+  grid-template-rows: 35rem 1fr;
+
+  &__header {
+    background-image: linear-gradient(
+        rgba($color-primary, 0.8),
+        rgba($color-primary-2, 0.6)
+      ),
+      url("../../img/about-2.jpg");
+    background-size: cover;
+    background-position: 50%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+
+    &-title {
+      @include centerPosition;
+
+      h2 {
+        font-size: 9rem;
+      }
+    }
+  }
+
+  &__content {
+    color: $color-font;
+    margin: 3rem 30rem;
+    text-align: center;
+
+    & > * {
+      padding: 2rem;
+    }
+  }
+
+  &__contact {
+    height: 10rem;
+    background-color: $color-primary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      margin-right: 3rem;
+    }
+
+    a {
+      font-size: 1.5rem;
+      padding: 1rem 1rem;
+    }
+  }
+}

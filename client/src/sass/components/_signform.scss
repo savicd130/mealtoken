@@ -1,0 +1,20 @@
+.signform {
+  color: $color-font;
+  grid-column: center-start / center-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__box {
+    background-color: $color-white;
+    width: 50rem;
+    border: 1px solid $color-white;
+    border-radius: 5px;
+    padding: 4rem;
+    box-shadow: 3px 3px rgb(230, 229, 229);
+  }
+
+  &__btn {
+    align-self: stretch;
+  }
+}

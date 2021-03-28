@@ -1,0 +1,44 @@
+.navigation {
+  grid-column: full-start / full-end;
+  background-color: $color-primary;
+  padding: 0 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    span {
+      color: $color-secondary;
+    }
+  }
+
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    padding: 0 2rem;
+  }
+
+  &__links {
+    font-weight: 500;
+    padding: 1rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  &__links:hover {
+    border-bottom: 2px solid $color-secondary;
+    color: $color-secondary;
+  }
+  &__links:active,
+  &__links:focus {
+    outline: none;
+  }
+
+  &__btn {
+    padding: 0 0.5rem;
+  }
+}
