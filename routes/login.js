@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 // User
 const User = require('../models/User');
 const auth = require('../middleware/auth');
+
 ////TEST AUTH
 router.get('/', auth, async (req, res) => {
   try {
