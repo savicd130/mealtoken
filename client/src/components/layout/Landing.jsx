@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Landing = props => {
   return (
@@ -6,9 +7,9 @@ const Landing = props => {
       <div className="landing__title">
         <h3>Enjoy your healthy delicious meal</h3>
         <h1>Treat Yourself</h1>
-        <a href="/menu.html" className="btn btn-primary">
+        <Link to="/menu" className="btn btn-primary">
           Explore now
-        </a>
+        </Link>
       </div>
 
       <div className="landing__social">

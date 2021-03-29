@@ -16,6 +16,8 @@
 
   &__list {
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__item {
@@ -40,5 +42,9 @@
 
   &__btn {
     padding: 0 0.5rem;
+  }
+
+  button {
+    padding: 1.1rem 2rem;
   }
 }

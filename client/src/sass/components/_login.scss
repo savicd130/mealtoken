@@ -1,0 +1,43 @@
+.login {
+  @include centerPosition;
+  background-color: $bg-color;
+  border: none;
+  color: $color-font;
+  width: 50rem;
+  border-radius: 5px;
+  padding: 1rem 5rem;
+  border: none;
+
+  h2 {
+    text-align: center;
+  }
+
+  &__close {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    font-size: 2.5rem;
+    cursor: pointer;
+    border: none;
+    background-color: inherit;
+  }
+
+  &__close:active,
+  &__close:focus {
+    outline: none;
+  }
+
+  &__error {
+    text-align: center;
+    font-size: 1.8rem;
+    color: $color-white;
+    border-radius: 1px;
+    background-color: rgb(255, 5, 5);
+  }
+}
+
+.login:active,
+.login:focus {
+  outline: none;
+  border: none;
+}
