@@ -60,8 +60,7 @@ const Navbar = ({ isAuth, highaccess, logout }) => {
       </li>
       <li className="navigation__btn">
         <Link to="/register" className="btn btn-primary">
-          <i className="fas fa-user"></i>
-          Sign up
+          <i className="fas fa-user"></i> Sign up
         </Link>
       </li>
     </ul>

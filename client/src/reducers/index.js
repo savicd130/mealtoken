@@ -3,6 +3,6 @@ import about from './about';
 import auth from './auth';
 
 export default combineReducers({
-  about,
   auth,
+  about,
 });

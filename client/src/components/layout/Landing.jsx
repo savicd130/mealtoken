@@ -1,7 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-const Landing = props => {
+const Landing = ({ isAuth }) => {
+  if (isAuth) {
+    return <Redirect to="/menu" />;
+  }
   return (
     <div className="landing">
       <div className="landing__title">
@@ -40,4 +45,8 @@ const Landing = props => {
   );
 };
 
-export default Landing;
+const mapStateToProps = state => ({
+  isAuth: state.auth.isAuth,
+});
+
+export default connect(mapStateToProps)(Landing);

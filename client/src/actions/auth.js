@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {
+  REGISTRATION__SUCCESS,
+  REGISTRATION__FAIL,
   LOGIN__SUCCESS,
   LOGIN__FAIL,
   USER_LOADED,
@@ -49,9 +51,44 @@ export const login = ({ email, password, token }) => async dispatch => {
       payload: res.data,
       accesstoken: token === 'pUMs7xZN4yxT' ? true : false,
     });
+    dispatch(loadUser());
   } catch (err) {
     dispatch({
       type: LOGIN__FAIL,
+    });
+  }
+};
+
+export const register = ({
+  name,
+  email,
+  password,
+  token,
+}) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({ name, email, password, token });
+
+  try {
+    const res = await axios.post(
+      'http://localhost:5000/api/users',
+      body,
+      config
+    );
+
+    dispatch({
+      type: REGISTRATION__SUCCESS,
+      payload: res.data,
+      accesstoken: token === 'pUMs7xZN4yxT' ? true : false,
+    });
+    dispatch(loadUser());
+  } catch (err) {
+    dispatch({
+      type: REGISTRATION__FAIL,
     });
   }
 };

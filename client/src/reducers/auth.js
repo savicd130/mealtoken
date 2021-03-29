@@ -1,4 +1,6 @@
 import {
+  REGISTRATION__SUCCESS,
+  REGISTRATION__FAIL,
   LOGIN__SUCCESS,
   LOGIN__FAIL,
   USER_LOADED,
@@ -26,8 +28,10 @@ export default (state = initState, actions) => {
           : false,
         isAuth: true,
         loading: false,
+        user: payload,
       };
 
+    case REGISTRATION__SUCCESS:
     case LOGIN__SUCCESS:
       localStorage.setItem('token', payload.token);
       localStorage.setItem('highaccess', payload.highaccess ? 1 : 0);
@@ -39,6 +43,7 @@ export default (state = initState, actions) => {
       };
     case AUTH_ERROR:
     case LOGIN__FAIL:
+    case REGISTRATION__FAIL:
     case LOGOUT: {
       localStorage.removeItem('token');
       localStorage.removeItem('highaccess');

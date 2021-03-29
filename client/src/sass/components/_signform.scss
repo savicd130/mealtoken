@@ -17,4 +17,12 @@
   &__btn {
     align-self: stretch;
   }
+
+  &__error {
+    text-align: center;
+    font-size: 1.8rem;
+    color: $color-white;
+    border-radius: 1px;
+    background-color: rgb(255, 5, 5);
+  }
 }

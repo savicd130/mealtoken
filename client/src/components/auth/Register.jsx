@@ -1,34 +1,47 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { register } from '../../actions/auth';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-//State form
-const initState = {
-  name: '',
-  email: '',
-  password: '',
-  password2: '',
-  accessToken: '',
-};
+const Register = ({ register, isAuth }) => {
+  const [wrongPassword, setWrongPassword] = useState(false);
+  const [registerForm, setRegiterForm] = useState({
+    name: '',
+    email: '',
+    password: '',
+    password2: '',
+    token: '',
+  });
 
-const Register = props => {
-  const [registerForm, setRegiterForm] = useState(initState);
-
-  const { name, email, password, password2, accessToken } = registerForm;
+  const { name, email, password, password2, token } = registerForm;
 
   const formInput = e => {
     setRegiterForm({ ...registerForm, [e.target.name]: e.target.value });
   };
 
-  const formSubmit = e => {
+  const registerFormSubmit = e => {
     e.preventDefault();
-    console.log(registerForm);
+
+    if (password === password2) {
+      register({ name, email, password, token });
+    } else {
+      setWrongPassword(true);
+    }
   };
+
+  if (isAuth) {
+    return <Redirect to="/menu" />;
+  }
 
   return (
     <div className="signform">
       <div className="signform__box">
         <h2>Create an Meal Token Account</h2>
-        <form onSubmit={e => formSubmit(e)} className="form">
+        {wrongPassword ? (
+          <div className="signform__error">Password do not match</div>
+        ) : null}
+        <form onSubmit={e => registerFormSubmit(e)} className="form">
           <div className="form__field">
             <label className="form__label">
               Your name <span className="form__required">*</span>
@@ -75,7 +88,7 @@ const Register = props => {
             </label>
             <input
               type="password"
-              name="password"
+              name="password2"
               value={password2}
               onChange={e => formInput(e)}
               className="form__input"
@@ -88,15 +101,14 @@ const Register = props => {
             <input
               type="token"
               name="token"
-              value={accessToken}
+              value={token}
               onChange={e => formInput(e)}
               className="form__input"
               placeholder="Access token"
             />
           </div>
           <button className="btn btn-primary form__btn signform__btn">
-            <i className="fas fa-lock"></i>
-            Create Account
+            <i className="fas fa-lock"></i> Create Account
           </button>
         </form>
       </div>
@@ -106,4 +118,8 @@ const Register = props => {
 
 Register.propTypes = {};
 
-export default Register;
+const mapStateToProps = state => ({
+  isAuth: state.auth.isAuth,
+});
+
+export default connect(mapStateToProps, { register })(Register);
