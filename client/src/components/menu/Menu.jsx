@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { menuItems } from '../../actions/menu';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Menu = ({ menuItems, loading, data }) => {
   const [valueType, setValueType] = useState('');
@@ -64,10 +65,13 @@ const Menu = ({ menuItems, loading, data }) => {
     );
 
     if (loading) return null;
-    const pageNumber = Math.ceil(data[0].length / 9);
+    const pageNumber = Math.ceil(data.length / 9);
+    const paginatNum = indexPagination.value + 1;
     if (pageNumber === 1) return [leftDistable, rightDistable];
-    if (pageNumber > indexPagination.value + 1) return [leftDistable, right];
-    if (pageNumber === indexPagination.value + 1) return [left, rightDistable];
+    console.log(`${pageNumber} pageNum : ${paginatNum} pagiNum`);
+    if (pageNumber > paginatNum && paginatNum >= 2) return [left, right];
+    if (pageNumber > paginatNum) return [leftDistable, right];
+    if (pageNumber === paginatNum) return [left, rightDistable];
   };
 
   const itemsCard = inx => {
@@ -75,7 +79,7 @@ const Menu = ({ menuItems, loading, data }) => {
 
     const index = inx * 9;
     const custom = inx * 9 + 9;
-    const sliceItems = data[0].slice(index, custom);
+    const sliceItems = data.slice(index, custom);
 
     return sliceItems.map(el => {
       return (
@@ -87,35 +91,15 @@ const Menu = ({ menuItems, loading, data }) => {
           <h3>{el.name}</h3>
           <p className="mb-2">{el.descShort}</p>
           <div className="menu__card-nav">
-            <a href="/details.html" className="btn btn-secondary">
+            <Link to={`details/${el._id}`} className="btn btn-secondary">
               See Details
-            </a>
+            </Link>
           </div>
         </div>
       );
     });
   };
 
-  const card = () => {
-    return (
-      <div className="menu__card">
-        <div className="menu__card-header mb-1">
-          <img src="./img/carbonara2f55.jpg" alt="carbonara" />
-          <span>14$</span>
-        </div>
-        <h3>Pasta Carbonara</h3>
-        <p className="mb-2">
-          classNameic bacon-and-egg pasta with the yummy addition of peas.
-          Nothing better on earth.
-        </p>
-        <div className="menu__card-nav">
-          <a href="/details.html" className="btn btn-secondary">
-            See Details
-          </a>
-        </div>
-      </div>
-    );
-  };
   return (
     <div className="menu">
       <div className="menu__header">

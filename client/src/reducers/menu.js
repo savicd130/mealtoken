@@ -15,6 +15,11 @@ export default (state = initState, actions) => {
         loading: false,
         data: payload,
       };
+    case FAIL_MENU:
+      return {
+        ...state,
+        loading: false,
+      };
     default:
       return state;
   }
