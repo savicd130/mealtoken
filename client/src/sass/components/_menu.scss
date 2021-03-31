@@ -10,7 +10,7 @@
         rgba($color-primary, 0.8),
         rgba($color-primary-2, 0.6)
       ),
-      url("../../img/menu.jpg");
+      url('../../img/menu.jpg');
     background-size: cover;
     background-position: top;
     background-size: 100%;
@@ -39,7 +39,7 @@
       border-top-right-radius: 5px;
       border: 1px solid $color-primary;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       overflow: hidden;
     }
 
@@ -48,6 +48,7 @@
     }
 
     button {
+      display: block;
       color: $color-font;
       font-size: 1.8rem;
       height: 5rem;
@@ -62,10 +63,18 @@
         margin-right: 1rem;
       }
     }
-
+    .active,
     button:hover {
+      outline: none;
+      border: none;
       background-color: $color-primary;
       color: $color-white;
+    }
+
+    button:active,
+    button:focus {
+      outline: none;
+      background-color: $color-primary;
     }
   }
 
@@ -85,6 +94,10 @@
     justify-content: center;
     align-items: center;
 
+    img {
+      height: 20rem;
+    }
+
     &-nav {
       align-self: flex-start;
       display: flex;
@@ -99,6 +112,11 @@
       position: relative;
 
       span {
+        width: 5.5rem;
+        height: 5.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: absolute;
         top: -8%;
         right: -5%;
@@ -119,10 +137,10 @@
       border: 1px solid $color-primary;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      overflow: hidden;
     }
 
     li {
+      overflow: hidden;
       width: 100%;
     }
 
@@ -145,6 +163,16 @@
     button:hover {
       background-color: $color-primary;
       color: $color-white;
+    }
+
+    button:focus,
+    button:active {
+      outline: none;
+    }
+
+    button:disabled {
+      background-color: rgb(216, 216, 216);
+      color: rgb(196, 196, 196);
     }
   }
 }

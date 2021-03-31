@@ -39,9 +39,18 @@ export default (state = initState, actions) => {
         ...state,
         highaccess: accesstoken,
         isAuth: true,
+        success: null,
         loading: false,
       };
     case AUTH_ERROR:
+      return {
+        ...state,
+        highaccess: false,
+        isAuth: false,
+        success: true,
+        loading: false,
+      };
+
     case LOGIN__FAIL:
     case REGISTRATION__FAIL:
     case LOGOUT: {
@@ -51,6 +60,7 @@ export default (state = initState, actions) => {
         ...state,
         highaccess: false,
         isAuth: false,
+        success: null,
         loading: false,
       };
     }

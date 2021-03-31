@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { login } from '../../actions/auth';
 import { connect } from 'react-redux';
 
-const Login = ({ loginModal, setLoginModal, login, loading }) => {
-  const isAuth = +localStorage.getItem('isAuth');
-
+const Login = ({
+  loginModal,
+  setLoginModal,
+  login,
+  isAuth,
+  success,
+  loading,
+}) => {
   const [loginFormData, setLoginFormData] = useState({
     email: '',
     password: '',
@@ -26,7 +31,7 @@ const Login = ({ loginModal, setLoginModal, login, loading }) => {
   };
 
   if (isAuth) {
-    return <Redirect to="/" />;
+    return <Redirect to="/menu" />;
   }
 
   return (
@@ -41,7 +46,7 @@ const Login = ({ loginModal, setLoginModal, login, loading }) => {
           <i className="fas fa-times"></i>
         </button>
         <h2>Please, Log in</h2>
-        {!loading && !isAuth && (
+        {!loading && !success && (
           <div className="login__error">Wrong credentials!</div>
         )}
         <form onSubmit={e => onLoginFormSubmit(e)} className="form">
@@ -97,6 +102,7 @@ Login.propTypes = {
 
 const mapStateToProps = state => ({
   isAuth: state.auth.isAuth,
+  success: state.auth.success,
   loading: state.auth.loading,
 });
 

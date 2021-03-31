@@ -7,6 +7,7 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import About from './components/about/About';
+import Menu from './components/menu/Menu';
 
 //Redux
 import { Provider } from 'react-redux';
@@ -32,6 +33,7 @@ const App = () => {
           <Switch>
             <Route exact path="/register" component={Register} />
             <Route exact path="/about" component={About} />
+            <Route exact path="/menu" component={Menu} />
           </Switch>
         </div>
       </Router>

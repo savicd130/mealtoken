@@ -58,7 +58,7 @@ router.get('/', async (req, res) => {
   try {
     const menu = await Menu.find(req.query);
 
-    res.status(200).json([menu]);
+    res.status(200).json(menu);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Something get wrong on server!');
