@@ -1,26 +1,22 @@
-import {
-  GET_MENU,
-  FAIL_MENU,
-  GET_ITEM_MENU,
-  FAIL_ITEM_MENU,
-} from '../actions/types';
+import { GET_ITEM_MENU, FAIL_ITEM_MENU } from '../actions/types';
 
 const initState = {
   loading: true,
-  data: [],
+  data: {},
 };
 
 export default (state = initState, actions) => {
   const { type, payload } = actions;
 
   switch (type) {
-    case GET_MENU:
+    case GET_ITEM_MENU:
       return {
         ...state,
         loading: false,
         data: payload,
       };
-    case FAIL_MENU:
+
+    case FAIL_ITEM_MENU:
       return {
         ...state,
         loading: false,

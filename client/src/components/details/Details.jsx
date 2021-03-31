@@ -1,40 +1,74 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { menuItem } from '../../actions/menu';
+import { Link } from 'react-router-dom';
 
-const Details = props => {
-  console.log(props.match.params.id);
+const Details = ({ menuItem, match, loading, data }) => {
+  useEffect(() => {
+    menuItem(match.params.id);
+  }, []);
+
+  if (loading) return null;
+
+  const { name, descShort, descLong, price, imgUrl, type, comments } = data;
+
+  const renderComments = () => {
+    if (comments.length === 0) {
+      return (
+        <div className="comments-comm">
+          <div className="comments-comm__user"></div>
+          <p>This article does not have comment!</p>
+        </div>
+      );
+    }
+
+    return comments.map(el => {
+      return (
+        <div className="comments-comm">
+          <div className="comments-comm__user">
+            <i className="fas fa-user"></i> {el.name}
+          </div>
+          <p>{el.text}</p>
+        </div>
+      );
+    });
+  };
+
   return (
     <div className="details">
       <div className="details__back">
-        <a className="back-btn" href="/menu.html">
+        <Link className="back-btn" to="/menu">
           <i className="fas fa-angle-left"></i>
           BACK
-        </a>
+        </Link>
       </div>
       <div className="details__box">
-        <h2>Pasta Carbonara</h2>
-        <p className="mb-4">
-          classNameic bacon-and-egg pasta with the yummy addition of peas.
-          Nothing better on earth.
-        </p>
-        <div className="details__content mb-5">
-          <div className="details__content-left">
-            <p>
-              I can’t eat, think about, dream about, or even remotely consider
-              Pasta Carbonara without thinking of Heartburn, the Meryl
-              Streep/Jack Nicholson movie from the eighties that I both love and
-              hate. Love, because it’s incredibly written by Nora Ephron and
-              incredibly acted by Meryl and Jack. And Stockard. And because
-              Carly Simon sings the songs. And because Meryl and Jack feast on
-              Pasta Carbonara on the night of their first date.
-            </p>
+        <h2>{name}</h2>
+        <p className="mb-4">{descShort}</p>
+
+        <div class="details__content mb-5">
+          <div class="details__content-top">
+            <img
+              class="mb-3"
+              src={`http://localhost:5000${imgUrl}`}
+              alt="carbo"
+            />
+
+            <div class="details__content-top__details">
+              <h3>
+                <span>{price}$</span>
+              </h3>
+              <h3>{type}</h3>
+
+              {/* <!-- <a href="/details.html" class="btn btn-primary color-white">
+                <i class="fas fa-shopping-cart"></i>
+                Add to cart
+              </a> --> */}
+            </div>
           </div>
-          <div className="details__content-right">
-            <img className="mb-3" src="./img/carbonara2f55.jpg" alt="carbo" />
-            {/* <!-- <a href="/details.html" className="btn btn-primary color-white">
-            <i className="fas fa-shopping-cart"></i>
-            Add to cart
-          </a> --> */}
+          <div class="details__content-bottom">
+            <p>{descLong}</p>
           </div>
         </div>
         <div className="comments">
@@ -50,43 +84,7 @@ const Details = props => {
             <button className="btn btn-primary color-white">Add comment</button>
           </form>
         </div> --> */}
-
-          <div className="comments-comm">
-            <div className="comments-comm__user">
-              <i className="fas fa-user"></i>
-              Will Smith
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam
-              possimus commodi asperiores, nesciunt laudantium saepe quia. Eaque
-              aut qui consectetur, repellendus minima ullam similique doloremque
-              nulla reprehenderit libero? Alias, reprehenderit?
-            </p>
-          </div>
-          <div className="comments-comm">
-            <div className="comments-comm__user">
-              <i className="fas fa-user"></i>
-              Will Smith
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam
-              possimus commodi asperiores, nesciunt laudantium saepe quia. Eaque
-              aut qui consectetur, repellendus minima ullam similique doloremque
-              nulla reprehenderit libero? Alias, reprehenderit?
-            </p>
-          </div>
-          <div className="comments-comm">
-            <div className="comments-comm__user">
-              <i className="fas fa-user"></i>
-              Will Smith
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam
-              possimus commodi asperiores, nesciunt laudantium saepe quia. Eaque
-              aut qui consectetur, repellendus minima ullam similique doloremque
-              nulla reprehenderit libero? Alias, reprehenderit?
-            </p>
-          </div>
+          {renderComments()}
         </div>
       </div>
     </div>
@@ -95,4 +93,9 @@ const Details = props => {
 
 Details.propTypes = {};
 
-export default Details;
+const mapStateToProps = state => ({
+  loading: state.item.loading,
+  data: state.item.data,
+});
+
+export default connect(mapStateToProps, { menuItem })(Details);

@@ -29,21 +29,31 @@
   }
 
   &__content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    grid-gap: 3rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0 5rem;
 
-    &-left {
-      font-size: 1.7rem;
-    }
-
-    &-right {
+    &-top {
       display: flex;
       flex-direction: column;
+      img {
+        width: 90%;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+      }
+      &__details {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom: 2rem;
+        h3 {
+          font-size: 2.3rem;
 
-      a {
-        text-align: center;
+          span {
+            color: rgb(0, 90, 5);
+            font-weight: 800;
+          }
+        }
       }
     }
   }

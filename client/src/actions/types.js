@@ -9,3 +9,5 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGOUT = 'LOGOUT';
 export const GET_MENU = 'GET_MENU';
 export const FAIL_MENU = 'FAIL_MENU';
+export const GET_ITEM_MENU = 'GET_ITEM_MENU';
+export const FAIL_ITEM_MENU = 'GET_ITEM_MENU';

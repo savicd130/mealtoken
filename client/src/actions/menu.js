@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_MENU, FAIL_MENU } from './types';
+import { GET_MENU, FAIL_MENU, GET_ITEM_MENU, FAIL_ITEM_MENU } from './types';
 
 export const menuItems = typeParams => async dispatch => {
   const config = {
@@ -19,6 +19,22 @@ export const menuItems = typeParams => async dispatch => {
     console.error(err.message);
     dispatch({
       type: FAIL_MENU,
+    });
+  }
+};
+
+export const menuItem = id => async dispatch => {
+  try {
+    const res = await axios.get(`http://localhost:5000/api/menu/${id}`);
+
+    dispatch({
+      type: GET_ITEM_MENU,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err.message);
+    dispatch({
+      type: FAIL_ITEM_MENU,
     });
   }
 };
